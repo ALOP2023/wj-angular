@@ -1,0 +1,56 @@
+<div class="modal-backdrop" *ngIf="visible">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Historial de Cambio</h3>
+      <button class="close-btn" (click)="cerrar()">×</button>
+    </div>
+
+    <div class="modal-subtitle">
+      Estrategia: <strong>{{ estrategiaNombre }}</strong>
+    </div>
+
+    <div class="modal-body">
+      <div class="timeline">
+        <div class="timeline-item" *ngFor="let r of registros">
+          <div class="avatar">
+            <span>{{ r.actor[0] }}</span>
+          </div>
+          <div class="item-content">
+            <div class="item-header">
+              <div class="actor-beneficiario">
+                <div class="actor">{{ r.actor }}</div>
+                <div class="beneficiario">Beneficiario: {{ r.beneficiario }}</div>
+              </div>
+              <span class="badge"
+                [ngClass]="{
+                  'badge-pendiente': r.estado === 'pendiente',
+                  'badge-aprobado': r.estado === 'aprobado',
+                  'badge-rechazado': r.estado === 'rechazado'
+                }"
+              >
+                {{
+                  r.estado === 'pendiente'
+                    ? 'Pendiente'
+                    : r.estado === 'aprobado'
+                    ? 'Aprobada'
+                    : 'Rechazada'
+                }}
+              </span>
+            </div>
+            <div class="item-main-text">
+              {{ r.descripcion }}
+            </div>
+            <div class="item-meta">
+              <span>{{ r.fecha }} | {{ r.hora }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="cerrar()">Cerrar</button>
+    </div>
+  </div>
+</div>
+

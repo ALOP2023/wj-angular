@@ -1,0 +1,88 @@
+<div class="modal-backdrop" *ngIf="visible">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Gestión de Estrategia</h3>
+      <button class="close-btn" (click)="cerrar()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <section class="section">
+        <h4>1. Información General</h4>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre de la Estrategia</label>
+            <input type="text" [(ngModel)]="nombreEstrategia" />
+          </div>
+
+          <div class="form-group">
+            <label>Objetivo</label>
+            <input type="text" [(ngModel)]="objetivo" />
+          </div>
+
+          <div class="form-group">
+            <label>Meta Numérica</label>
+            <input type="number" [(ngModel)]="metaNumerica" />
+          </div>
+
+          <div class="form-group">
+            <label>Moneda (U/M)</label>
+            <input type="text" [(ngModel)]="moneda" />
+          </div>
+
+          <div class="form-group">
+            <label>Periodicidad</label>
+            <select [(ngModel)]="periodicidad">
+              <option>Diaria</option>
+              <option>Semanal</option>
+              <option>Mensual</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h4>3. Beneficiarios</h4>
+
+        <table class="tabla-beneficiarios">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cédula</th>
+              <th>Valor Acciones</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let b of beneficiarios">
+              <td>{{ b.nombre }}</td>
+              <td>{{ b.cedula }}</td>
+              <td>{{ b.valorAcciones | currency: 'USD':'symbol':'1.0-0' }}</td>
+              <td>
+                <span
+                  [ngClass]="{
+                    'badge-pendiente': b.estado === 'pendiente',
+                    'badge-aprobado': b.estado === 'aprobado',
+                    'badge-rechazado': b.estado === 'rechazado'
+                  }"
+                >
+                  {{ b.estado | titlecase }}
+                </span>
+              </td>
+              <td>
+                <button class="btn-success" (click)="aprobar(b)">Aprobar</button>
+                <button class="btn-danger" (click)="rechazar(b)">Rechazar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="cerrar()">Cancelar</button>
+      <button class="btn-primary" (click)="cerrar()">Guardar cambios</button>
+    </div>
+  </div>
+</div>

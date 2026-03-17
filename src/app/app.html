@@ -1,0 +1,20 @@
+<app-tabla-estrategias
+  (gestionarEstrategia)="onGestionar($event)"
+  (verHistorial)="onVerHistorial($event)"
+></app-tabla-estrategias>
+
+<app-gestion-estrategia
+  [visible]="modalVisible"
+  [estrategia]="estrategiaSeleccionada"
+  [beneficiarios]="beneficiariosGestion"
+  (aprobarBeneficiario)="onAprobarBeneficiario($event)"
+  (rechazarBeneficiario)="onRechazarBeneficiario($event)"
+  (close)="onCerrarModal()"
+></app-gestion-estrategia>
+
+<app-historial-cambios
+  [visible]="historialVisible"
+  [estrategiaNombre]="estrategiaHistorialNombre"
+  [registros]="registrosHistorial"
+  (close)="onCerrarHistorial()"
+></app-historial-cambios>

@@ -1,0 +1,27 @@
+<div class="page-container">
+  <h2>Gestión de Estrategias</h2>
+
+  <table class="tabla-estrategias">
+    <thead>
+      <tr>
+        <th>Nombre de la Estrategia</th>
+        <th>Objetivo</th>
+        <th>Meta Numérica</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let e of estrategias">
+        <td>{{ e.nombre }}</td>
+        <td>{{ e.objetivo }}</td>
+        <td>{{ e.metaNumerica }}</td>
+        <td class="acciones">
+          <button class="btn-secondary" (click)="onVerHistorial(e)">Historial de cambio</button>
+          <button class="btn-primary" (click)="onGestionar(e)">
+            Gestión de estrategia
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
